@@ -108,7 +108,7 @@ export default function Navbar() {
 
           {/* Desktop nav links */}
           <div className="nav-links" style={{ display: 'flex', alignItems: 'center', gap: '28px' }}>
-            {(['/', '/games', '/news'] as const).map((path) => (
+            {(['/', '/games', '/news', '/community'] as const).map((path) => (
               <Link
                 key={path}
                 to={path}
@@ -125,7 +125,7 @@ export default function Navbar() {
                 onMouseEnter={(e) => { if (!isActive(path)) e.currentTarget.style.opacity = '0.8'; }}
                 onMouseLeave={(e) => { if (!isActive(path)) e.currentTarget.style.opacity = '0.5'; }}
               >
-                {path === '/' ? 'HOME' : path === '/games' ? 'GAMES' : 'NEWS'}
+                {path === '/' ? 'HOME' : path === '/games' ? 'GAMES' : path === '/news' ? 'NEWS' : 'COMMUNITY'}
                 {isActive(path) && (
                   <span
                     style={{
@@ -361,6 +361,7 @@ export default function Navbar() {
           <Link to="/" style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: '18px', letterSpacing: '2px', color: isActive('/') ? '#e8c060' : '#f0f0f0', opacity: isActive('/') ? 1 : 0.6, textDecoration: 'none', padding: '8px 0' }}>HOME</Link>
           <Link to="/games" style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: '18px', letterSpacing: '2px', color: isActive('/games') ? '#e8c060' : '#f0f0f0', opacity: isActive('/games') ? 1 : 0.6, textDecoration: 'none', padding: '8px 0' }}>GAMES</Link>
           <Link to="/news" style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: '18px', letterSpacing: '2px', color: isActive('/news') ? '#e8c060' : '#f0f0f0', opacity: isActive('/news') ? 1 : 0.6, textDecoration: 'none', padding: '8px 0' }}>NEWS</Link>
+          <Link to="/community" style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: '18px', letterSpacing: '2px', color: isActive('/community') ? '#e8c060' : '#f0f0f0', opacity: isActive('/community') ? 1 : 0.6, textDecoration: 'none', padding: '8px 0' }}>COMMUNITY</Link>
           <div style={{ height: '1px', background: '#ffffff10', margin: '4px 0' }} />
           {user ? (
             <>

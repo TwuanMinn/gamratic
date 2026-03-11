@@ -11,6 +11,7 @@ import GameDetail from './pages/GameDetail';
 import Auth from './pages/Auth';
 import UserProfile from './pages/UserProfile';
 import News from './pages/News';
+import Community from './pages/Community';
 import NotFound from './pages/NotFound';
 
 export default function App() {
@@ -28,6 +29,7 @@ export default function App() {
               <Route path="/auth" element={<Auth />} />
               <Route path="/user/:id" element={<UserProfile />} />
               <Route path="/news" element={<News />} />
+              <Route path="/community" element={<Community />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </PageTransition>

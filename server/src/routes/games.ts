@@ -94,6 +94,25 @@ router.get('/', async (req: Request, res: Response, next: NextFunction) => {
   }
 });
 
+
+// GET /api/games/reviews/recent — latest reviews across all games
+router.get('/reviews/recent', async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const limit = Math.min(parseInt(req.query.limit as string) || 20, 50);
+    const reviews = await prisma.review.findMany({
+      take: limit,
+      orderBy: { createdAt: 'desc' },
+      include: {
+        user: { select: { id: true, username: true } },
+        game: { select: { id: true, title: true, coverImage: true, criticScore: true } },
+      },
+    });
+    res.json({ success: true, data: reviews });
+  } catch (err) {
+    next(err);
+  }
+});
+
 // GET /api/games/:id — single game with all reviews
 router.get('/:id', optionalAuth, async (req: Request, res: Response, next: NextFunction) => {
   try {

@@ -8,6 +8,7 @@ import ReviewCard from '../components/ReviewCard';
 import WriteReviewForm from '../components/WriteReviewForm';
 import SimilarGames from '../components/SimilarGames';
 import ShareButton from '../components/ShareButton';
+import WhereToBuy from '../components/WhereToBuy';
 import BrandedLoader from '../components/BrandedLoader';
 import Footer from '../components/Footer';
 
@@ -360,6 +361,9 @@ export default function GameDetail() {
                     </ul>
                   </div>
                 </div>
+
+                {/* Where to Buy */}
+                <WhereToBuy game={game} />
 
                 {/* Recent Reviews preview */}
                 {sortedReviews.slice(0, 2).map((review, idx) => (
