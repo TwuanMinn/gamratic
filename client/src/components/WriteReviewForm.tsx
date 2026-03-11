@@ -2,6 +2,7 @@ import { useState } from 'react';
 import ScoreBadge from './ScoreBadge';
 import { useAuth } from '../hooks/useAuth';
 import { useToast } from './Toast';
+import { apiUrl } from '../lib/api';
 
 interface WriteReviewFormProps {
   gameId: number;
@@ -39,7 +40,7 @@ export default function WriteReviewForm({ gameId, onSubmitted }: WriteReviewForm
     setError('');
     setSubmitting(true);
     try {
-      const res = await fetch(`/api/games/${gameId}/reviews`, {
+      const res = await fetch(apiUrl(`/api/games/${gameId}/reviews`), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',

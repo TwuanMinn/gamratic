@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import type { ApiResponse } from '../types';
+import { apiUrl } from '../lib/api';
 
 interface FetchState<T> {
   data: T | null;
@@ -28,7 +29,7 @@ export function useFetch<T>(url: string | null): FetchState<T> {
     setLoading(true);
     setError(null);
 
-    fetch(url, { credentials: 'include' })
+    fetch(apiUrl(url), { credentials: 'include' })
       .then(async (res) => {
         if (!res.ok) {
           const body = await res.json().catch(() => ({ error: 'Request failed' }));

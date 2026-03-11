@@ -14,7 +14,7 @@ const PORT = process.env.PORT || 3001;
 
 // Middleware stack (ordered per best practices)
 app.use(cors({
-  origin: 'http://localhost:5173',
+  origin: process.env.CORS_ORIGIN?.split(',') || 'http://localhost:5173',
   credentials: true,
 }));
 app.use(cookieParser());

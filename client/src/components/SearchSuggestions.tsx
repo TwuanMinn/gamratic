@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import type { Game } from '../types';
+import { apiUrl } from '../lib/api';
 
 interface SearchSuggestionsProps {
   query: string;
@@ -24,7 +25,7 @@ export default function SearchSuggestions({ query, focused, onSelect }: SearchSu
     debounceRef.current = setTimeout(async () => {
       setLoading(true);
       try {
-        const res = await fetch(`/api/games?search=${encodeURIComponent(query)}`);
+        const res = await fetch(apiUrl(`/api/games?search=${encodeURIComponent(query)}`));
         const json = await res.json();
         if (json.success) {
           setResults(json.data.slice(0, 5));
