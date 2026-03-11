@@ -1,0 +1,49 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           Int      @id @default(autoincrement())
+  username     String   @unique
+  email        String   @unique
+  passwordHash String
+  avatar       String   @default("")
+  bio          String   @default("")
+  joinedAt     DateTime @default(now())
+  reviews      Review[]
+}
+
+model Game {
+  id              Int      @id @default(autoincrement())
+  title           String
+  genres          String   @default("[]")
+  platforms       String   @default("[]")
+  releaseYear     Int
+  coverImage      String   @default("")
+  coverGradient   String   @default("linear-gradient(135deg, #1a1a2e, #16213e)")
+  accentColor     String   @default("#e8c060")
+  criticScore     Int      @default(0)
+  description     String
+  longDescription String   @default("")
+  developer       String
+  publisher       String
+  tags            String   @default("[]")
+  reviews         Review[]
+}
+
+model Review {
+  id           Int      @id @default(autoincrement())
+  score        Int
+  body         String
+  createdAt    DateTime @default(now())
+  helpfulVotes Int      @default(0)
+  game         Game     @relation(fields: [gameId], references: [id])
+  gameId       Int
+  user         User     @relation(fields: [userId], references: [id])
+  userId       Int
+}
